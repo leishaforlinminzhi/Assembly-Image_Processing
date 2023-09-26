@@ -83,6 +83,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\masm32\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>C:\Irvine\Irvine32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <HeapReserveSize>
+      </HeapReserveSize>
     </Link>
     <MASM>
       <IncludePaths>C:\Irvine;C:\masm32\include;%(IncludePaths)</IncludePaths>
