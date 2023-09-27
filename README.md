@@ -40,21 +40,37 @@
 
   	<!--ui处理一下打开成功or失败提示-->
 
-  	通过`GetFileSize`函数获取文件的大小，计算需要读取的字节数，作为`ReadFile`函数的参数。
+  	通过`GetFileSize`函数获取文件的大小，计算需要读取的字节数，作为`ReadFile`函数的参数并按需分配存储数据的缓冲区`ddBaseFile`。
 
   	执行`ReadFile`函数，从打开的文件中读取数据，保存在缓冲区`ddBaseFile`中。
 
-  + 格式转化
+  + 格式转化 
+    
+    <!--这部分没看懂 ddBaseFile是存图片信息的缓冲区，ddBytesPerPixel应该是存像素的，但是这两个相互转化的部分没找到 也许bmp读出来就是二进制？-->
     
     + 将图片文件转化为像素矩阵
     
-      通过读取文件时获得的数据计算矩阵的`RowSize`
+      通过读取文件时获得的数据计算像素矩阵的`RowSize`，单位为`byte`
     
+      > RGB图⼀个像素占3*8=24bits，对于小数向下舍入所以分子需要加31
+    
+      $$
+      RowSize=\frac{(BitsPerPixel *ImageWeight+31)}{32}*4
+      $$
+    
+      从而计算存储像素矩阵所需要的空间` ddPixelArraySize`
+      $$
+      ddPixelArraySize=RowSize * ImageHeight
+      $$
       
     
     + 将像素矩阵转化为图片文件
     
+      
+    
   + 保存图片
+
+  	将存储的缓冲区`ddBaseFile`指针和更新后的字节数作为参数执行`CreateFile`函数创建输出文件`output.bmp`,
 
 + #### 图片裁剪、旋转、翻转
 
