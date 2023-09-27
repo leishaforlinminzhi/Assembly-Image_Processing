@@ -356,8 +356,8 @@ _menu_is_hard:
   print      str$(ebx),13,10
   
   
-  invoke     FindClose, hFile
-  invoke     FindClose, hFileOut
+  ;invoke     CloseHandle, hFile 去掉这句话就不报错了
+  invoke     CloseHandle, hFileOut
   
 _exit:
   print  offset crlf
