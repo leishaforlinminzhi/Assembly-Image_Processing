@@ -309,7 +309,7 @@ _menu_is_hard:
   
   
   ; Write data 
-  invoke     SetFilePointer, hFileOut, 0, NULL, FILE_BEGIN
+  invoke     SetFilePointer, hFileOut, 0, NULL, FILE_BEGIN 
   invoke     WriteFile, hFileOut, ddBaseFile ,ddFileSize, addr dwByteRead, NULL
 
   
