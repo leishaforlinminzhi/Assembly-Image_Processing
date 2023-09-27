@@ -11,12 +11,7 @@ include      bmp_header.inc
 ;             : The filters are a part of JIE (Java Image Effect) that I have written
 ;             : 2 years ago (the JIE project should be public soon)
 ; ----------------------------------------------------------------------------------
-; Author      : Marco C. (DispatchCode)
-; ----------------------------------------------------------------------------------
-; License     : You can redistibute this code, but please, link this page and/or cite
-;             : the author. Thanks.
-; -----------------------------------------------------------------------------------
-; Version     : 0.9 (Beta)
+; refer to Marco C. (DispatchCode)
 ; -----------------------------------------------------------------------------------
 ;  !!!!! IMPORTANT NOTE !!!!!
 ;  
@@ -38,29 +33,12 @@ include      bmp_header.inc
 
 
 
-;
-; ##################################################################################
 .const
 
 FILE_NAME_LENGTH    =                20
 
 
-;
-; ##################################################################################
 .data
-
-szDescription         db   9,9,9,"############################################################",13,10,
-                           9,9,9,"# How to read a BMP [uncompressed] image, get information, #",13,10,
-                           9,9,9,"# and manipulate it.                                       #",13,10,
-                           9,9,9,"# ---------------------------------------------------------#",13,10,0
-                          
-szDescription1        db   9,9,9,"# Author: Marco 'DispatchCode' C.                          #",13,10,
-                           9,9,9,"# ---------------------------------------------------------#",13,10,
-                           9,9,9,"# You can use and redistribute this code, but please,      #",13,10,0
-                          
-szDescription2        db   9,9,9,"# link this page and/or cite the author. Thanks, and enjoy #",13,10,
-                           9,9,9,"############################################################",13,10,13,10,0
-
 
 szMenu                db   13,10,"Select on option:",13,10,
                            9,"1. Grayscale filter",13,10,
@@ -68,22 +46,14 @@ szMenu                db   13,10,"Select on option:",13,10,
                            9,"3. Contrast",13,10,
                            9,"4. Exit",13,10,0
 
-                          
-szBitmapHeader        db   9,9,"################################",13,10,
-                           9,9,"#          BMP_HEADER          #",13,10,
-                           9,9,"################################",13,10,13,10,0
-
-                         
-szBitmapInfoHeader    db   9,9,"################################",13,10,
-                           9,9,"#       BITMPAINFOHEADER       #",13,10,
-                           9,9,"################################",13,10,13,10,0
+         
                           
                           
                            
 crlf                  db     13,10,0
 szFileNameOut         db     "output.bmp",0
 
-szFileInput           db     "File name (with bmp extension): ",0
+szFileInput           db     "File name (with bmp extension and make sure the image is at the same directory of main.asm): ",0
 
 
 ;
@@ -113,12 +83,6 @@ ddBytesPerPixel       dd                            ?
 
 .code
 start:
-
-  call     ClearScreenAndColor
-
-  print   offset szDescription
-  print   offset szDescription1
-  print   offset szDescription2
   
   
   print  offset szFileInput
@@ -152,7 +116,6 @@ start:
   mov      esi, ddBaseFile
   assume   esi:ptr BMP_HEADER
   
-  print  offset szBitmapHeader
   
   ; Print signature
   movzx    ebx, [esi].header_field
@@ -187,7 +150,6 @@ start:
    Now it's time to read the DIB header with the most significant info.
   ===========================*
   
-  print offset szBitmapInfoHeader
     
   mov      esi, ddBaseFile
   add      esi, 0Eh
