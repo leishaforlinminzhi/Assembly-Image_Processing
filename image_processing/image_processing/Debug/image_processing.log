@@ -1,3 +1,0 @@
-﻿  Assembling main.asm...
-main.asm(664): warning A6004: procedure argument or local not referenced : coordScreen
-  image_processing.vcxproj -> C:\Users\linmi\Documents\GitHub\Assembly-Image_Processing\image_processing\Debug\image_processing.exe
